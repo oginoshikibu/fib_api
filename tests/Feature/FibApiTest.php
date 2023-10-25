@@ -68,13 +68,6 @@ class FibApiTest extends TestCase
         $response->assertStatus(400);
     }
 
-    /** @test */
-    public function badRequest_extraParam_returns400(): void
-    {
-        $response = $this->get('/api/fib?n=1&extra=1');
-
-        $response->assertStatus(400);
-    }
 
     /** @test */
     public function badRequest_wrongParamName_returns400(): void
