@@ -4,6 +4,8 @@ namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 
+use RangeException;
+use InvalidArgumentException;
 use App\Models\NumSeq;
 
 class FibTest extends TestCase
