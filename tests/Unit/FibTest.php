@@ -4,51 +4,53 @@ namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 
+use RangeException;
+use InvalidArgumentException;
 use App\Models\NumSeq;
 
 class FibTest extends TestCase
 {
     /** @test */
-    public function GiveOne(): void
+    public function GiveOneReturnOne(): void
     {
         $this->assertSame(1, NumSeq::fib(1));
     }
 
     /** @test */
-    public function GiveTwo(): void
+    public function GiveTwoReturnTwo(): void
     {
         $this->assertSame(1, NumSeq::fib(2));
     }
 
     /** @test */
-    public function GiveThree(): void
+    public function GiveThreeReturnTwo(): void
     {
         $this->assertSame(2, NumSeq::fib(3));
     }
 
     /** @test */
-    public function Givezero(): void
+    public function GiveZeroReturnRangeException(): void
     {
         $this->expectException(RangeException::class);
         NumSeq::fib(0);
     }
     
     /** @test */
-    public function GiveMinusOne(): void
+    public function GiveMinusOneReturnRangeException(): void
     {
         $this->expectException(RangeException::class);
         NumSeq::fib(-1);
     }
 
     /** @test */
-    public function GiveMinusTen(): void
+    public function GiveMinusTenReturnRangeException(): void
     {
         $this->expectException(RangeException::class);
         NumSeq::fib(-10);
     }
     
     /** @test */
-    public function GiveStrings(): void
+    public function GiveStringsReturnInvalidArgumentException(): void
     {
         $this->expectException(InvalidArgumentException::class);
         NumSeq::fib("UnitTest");
