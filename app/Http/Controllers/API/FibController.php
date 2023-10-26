@@ -10,9 +10,9 @@ use App\Models\NumSeq;
 
 class FibController extends Controller
 {
-    
+
     public function index(Request $request): JsonResponse
-    {   
+    {
         try {
             if (!$request->has('n')) {
                 throw new \InvalidArgumentException("Not given a proper parameter");

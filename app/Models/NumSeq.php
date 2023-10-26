@@ -23,42 +23,41 @@ class NumSeq extends Model
         if ($index === 1 || $index === 2) {
             return "1";
         } else {
-            // overflow対策で、stringで計算する
-            $a_1    = ["1"];
-            $a_tmp  = ["1"];
-            $tmp_id = 2;
-            $MAX_DIGIT_LENGTH = strlen((string)PHP_INT_MAX)-2; // 桁数制限
-            $MAX_DIGIT_ORDER  = 10**$MAX_DIGIT_LENGTH;
-            
+            // overflow対策: stringの配列A_nで計算する
+            $A_prev    = ["1"];
+            $tmp_id    = 2;
+            $A_tmp     = ["1"];
+            $MAX_DIGIT_LENGTH = strlen((string)PHP_INT_MAX) - 2; // 桁数制限
+            $MAX_DIGIT_ORDER  = 10 ** $MAX_DIGIT_LENGTH;
+
             // 3からindexまで計算
             while ($tmp_id !== $index) {
-                $a_nxt = [];
-                $add = 0;
-                for ($i = 0; $i < count($a_tmp); $i++) {
-                    $tmp = (int) $a_1[$i] + (int) $a_tmp[$i] + $add;
-                    
+                $A_nxt = [];    // 次の配列
+                $add   = 0;   // 繰り上がり
+                for ($i = 0; $i < count($A_tmp); $i++) {
+                    $tmp = (int) $A_prev[$i] + (int) $A_tmp[$i] + $add;
                     if (strlen($tmp) >= $MAX_DIGIT_LENGTH) {
-                        $a_nxt[] = (string)($tmp % $MAX_DIGIT_ORDER);
-                        $add     = intdiv($tmp, $MAX_DIGIT_ORDER); // 繰り上がり
+                        $A_nxt[] = (string)($tmp % $MAX_DIGIT_ORDER);
+                        $add     = intdiv($tmp, $MAX_DIGIT_ORDER);
                     } else {
-                        $a_nxt[] = (string)$tmp;
+                        $A_nxt[] = (string)$tmp;
                         $add     = 0;
                     }
                 }
                 if ($add !== 0) {   // 最後の繰り上がり
-                    $a_nxt[] = (string)$add;
-                    $a_tmp[] = "0";
+                    $A_nxt[] = (string)$add;
+                    $A_tmp[] = "0";
                 }
-                assert(count($a_1) === count($a_tmp));
-                $a_1   = $a_tmp;
-                $a_tmp = $a_nxt;
+                assert(count($A_prev) === count($A_tmp));
+                $A_prev = $A_tmp;
+                $A_tmp  = $A_nxt;
                 $tmp_id++;
             }
             // 0埋め
-            for ($i = 0; $i < count($a_tmp)-1; $i++) {
-                $a_tmp[$i] = str_pad($a_tmp[$i], $MAX_DIGIT_LENGTH, "0", STR_PAD_LEFT);
+            for ($i = 0; $i < count($A_tmp) - 1; $i++) {
+                $A_tmp[$i] = str_pad($A_tmp[$i], $MAX_DIGIT_LENGTH, "0", STR_PAD_LEFT);
             }
-            return implode("", array_reverse($a_tmp));
+            return implode("", array_reverse($A_tmp));
         }
     }
 }

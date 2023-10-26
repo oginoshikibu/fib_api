@@ -44,19 +44,18 @@ class FibTest extends TestCase
         $this->expectException(RangeException::class);
         NumSeq::fib(0);
     }
-    
+
     /** @test */
     public function ng_minus1Index_returnRangeException(): void
     {
         $this->expectException(RangeException::class);
         NumSeq::fib(-1);
     }
-  
+
     /** @test */
     public function ng_stringIndex_returnInvalidArgumentException(): void
     {
         $this->expectException(InvalidArgumentException::class);
         NumSeq::fib("UnitTest");
     }
-    
 }
