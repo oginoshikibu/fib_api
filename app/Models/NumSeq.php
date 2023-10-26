@@ -12,18 +12,26 @@ class NumSeq extends Model
 {
     use HasFactory;
 
-    public static function fib($num): int
+    public static function fib($index): int
     {
-        if (!is_int($num)){
+        if (!is_int($index)){
             throw new InvalidArgumentException("Not an integer");
         }
-        if ($num<1){
+        if ($index < 1){
             throw new RangeException("Not a positive integer");
         }
-        if ($num==1 || $num==2){
+        if ($index === 1 || $index === 2){
             return 1;
         } else {
-            return NumSeq::fib($num-1) + NumSeq::fib($num-2);
+            $a_1    = 1;
+            $a_tmp  = 1;
+            $tmp_id = 2;
+            while ($tmp_id !== $index){
+                $a_tmp  = $a_1 + $a_tmp;
+                $a_1    = $a_tmp - $a_1;
+                $tmp_id++;
+            }
+            return $a_tmp;
         }
     }
 }
