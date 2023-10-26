@@ -13,19 +13,19 @@ class FibTest extends TestCase
     /** @test */
     public function GiveOneReturnOne(): void
     {
-        $this->assertSame(1, NumSeq::fib(1));
+        $this->assertSame("1", NumSeq::fib(1));
     }
 
     /** @test */
     public function GiveTwoReturnTwo(): void
     {
-        $this->assertSame(1, NumSeq::fib(2));
+        $this->assertSame("1", NumSeq::fib(2));
     }
 
     /** @test */
     public function GiveThreeReturnTwo(): void
     {
-        $this->assertSame(2, NumSeq::fib(3));
+        $this->assertSame("2", NumSeq::fib(3));
     }
 
     /** @test */
