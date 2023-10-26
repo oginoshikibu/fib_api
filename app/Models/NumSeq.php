@@ -27,8 +27,8 @@ class NumSeq extends Model
             $a_1    = ["1"];
             $a_tmp  = ["1"];
             $tmp_id = 2;
-            $MAX_DEGIT_LENGTH = strlen((string)PHP_INT_MAX)-2; // 桁数制限
-            $MAX_DEGIT_ORDER  = 10**$MAX_DEGIT_LENGTH;
+            $MAX_DIGIT_LENGTH = strlen((string)PHP_INT_MAX)-2; // 桁数制限
+            $MAX_DIGIT_ORDER  = 10**$MAX_DIGIT_LENGTH;
             
             // 3からindexまで計算
             while ($tmp_id !== $index) {
@@ -37,9 +37,9 @@ class NumSeq extends Model
                 for ($i = 0; $i < count($a_tmp); $i++) {
                     $tmp = (int) $a_1[$i] + (int) $a_tmp[$i] + $add;
                     
-                    if (strlen($tmp) >= $MAX_DEGIT_LENGTH) {
-                        $a_nxt[] = (string)($tmp % $MAX_DEGIT_ORDER);
-                        $add     = intdiv($tmp, $MAX_DEGIT_ORDER); // 繰り上がり
+                    if (strlen($tmp) >= $MAX_DIGIT_LENGTH) {
+                        $a_nxt[] = (string)($tmp % $MAX_DIGIT_ORDER);
+                        $add     = intdiv($tmp, $MAX_DIGIT_ORDER); // 繰り上がり
                     } else {
                         $a_nxt[] = (string)$tmp;
                         $add     = 0;
@@ -56,7 +56,7 @@ class NumSeq extends Model
             }
             // 0埋め
             for ($i = 0; $i < count($a_tmp)-1; $i++) {
-                $a_tmp[$i] = str_pad($a_tmp[$i], $MAX_DEGIT_LENGTH, "0", STR_PAD_LEFT);
+                $a_tmp[$i] = str_pad($a_tmp[$i], $MAX_DIGIT_LENGTH, "0", STR_PAD_LEFT);
             }
             return implode("", array_reverse($a_tmp));
         }
