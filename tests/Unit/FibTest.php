@@ -29,6 +29,12 @@ class FibTest extends TestCase
     }
 
     /** @test */
+    public function GiveThreeReturnTwo(): void
+    {
+        $this->assertSame("218922995834555169026", NumSeq::fib(99));
+    }
+
+    /** @test */
     public function GiveZeroReturnRangeException(): void
     {
         $this->expectException(RangeException::class);
