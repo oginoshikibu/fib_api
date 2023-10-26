@@ -23,7 +23,15 @@ class NumSeq extends Model
         if ($num==1 || $num==2){
             return 1;
         } else {
-            return NumSeq::fib($num-1) + NumSeq::fib($num-2);
+            $a_1    = 1;
+            $a_tmp  = 1;
+            $tmp_id = 2;
+            while ($tmp_id !== $index){
+                $a_tmp  = $a_1 + $a_tmp;
+                $a_1    = $a_tmp - $a_1;
+                $tmp_id++;
+            }
+            return (string) $a_tmp;
         }
     }
 }
