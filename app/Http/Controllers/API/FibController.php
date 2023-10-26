@@ -15,7 +15,7 @@ class FibController extends Controller
     {   
         try {
             $n = (int) $request->input('n');
-            $result = NumSeq::fib($n);
+            $result = (string) NumSeq::fib($n);
             return response()->json(['result' => $result], 200);
         } catch (\InvalidArgumentException $e) {
             return response()->json(['error' => $e->getMessage()], 400);
