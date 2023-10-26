@@ -37,6 +37,25 @@ class FibApiTest extends TestCase
     }
 
     /** @test */
+    public function ok_99thIndex_returnsNotOverFlow(): void
+    {
+        $response = $this->get('/api/fib?n=99');
+
+        $response->assertStatus(200);
+        $response->assertJson(['result' => "218922995834555169026"]);
+    }
+
+    /** @test */
+    public function ok_1007thIndex_returns211Digits(): void
+    {
+        $response = $this->get('/api/fib?n=1007');
+
+        $response->assertStatus(200);
+        $response->assertJson(['result' => "1262027241743996257169366534803711153432873792011637768873717598849301425880152551659880282149947993889708136584785538962348100239436771893992147449837835103812540911951967569050060912009607003831549523998076513"]);
+    }
+
+
+    /** @test */
     public function badRequest_zeroIndex_returns400(): void
     {
         $response = $this->get('/api/fib?n=0');
