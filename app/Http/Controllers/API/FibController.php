@@ -14,6 +14,9 @@ class FibController extends Controller
     public function index(Request $request): JsonResponse
     {   
         try {
+            if (!$request->has('n')) {
+                throw new \InvalidArgumentException("Not given a proper parameter");
+            }
             $n = (int) $request->input('n');
             $result = (string) NumSeq::fib($n);
             return response()->json(['result' => $result], 200);
