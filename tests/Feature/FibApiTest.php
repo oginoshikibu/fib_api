@@ -95,6 +95,4 @@ class FibApiTest extends TestCase
 
         $response->assertStatus(400);
     }
-
-
 }
