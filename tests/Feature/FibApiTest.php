@@ -15,7 +15,7 @@ class FibApiTest extends TestCase
         $response = $this->get('/api/fib?n=1');
 
         $response->assertStatus(200);
-        $response->assertJson(['result' => 1]);
+        $response->assertJson(['result' => "1"]);
     }
 
     /** @test */
@@ -24,7 +24,7 @@ class FibApiTest extends TestCase
         $response = $this->get('/api/fib?n=2');
 
         $response->assertStatus(200);
-        $response->assertJson(['result' => 1]);
+        $response->assertJson(['result' => "1"]);
     }
 
     /** @test */
@@ -33,7 +33,7 @@ class FibApiTest extends TestCase
         $response = $this->get('/api/fib?n=3');
 
         $response->assertStatus(200);
-        $response->assertJson(['result' => 2]);
+        $response->assertJson(['result' => "2"]);
     }
 
     /** @test */
