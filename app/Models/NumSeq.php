@@ -45,7 +45,7 @@ class NumSeq extends Model
                         $add     = 0;
                     }
                 }
-                if ($add !== 0) {
+                if ($add !== 0) {   // 最後の繰り上がり
                     $a_nxt[] = (string)$add;
                     $a_tmp[] = "0";
                 }
