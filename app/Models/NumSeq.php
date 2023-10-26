@@ -12,7 +12,7 @@ class NumSeq extends Model
 {
     use HasFactory;
 
-    public static function fib(int $index): string
+    public static function fib($index): int
     {
         if (!is_int($index)){
             throw new InvalidArgumentException("Not an integer");
@@ -31,7 +31,7 @@ class NumSeq extends Model
                 $a_1    = $a_tmp - $a_1;
                 $tmp_id++;
             }
-            return (string) $a_tmp;
+            return $a_tmp;
         }
     }
 }
