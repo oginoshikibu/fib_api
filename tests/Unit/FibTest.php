@@ -29,12 +29,12 @@ class FibTest extends TestCase
     }
 
     /** @test */
-    public function ok_largeIndex_returnNotOverFlow(): void
+    public function ok_99thIndex_returnNotOverFlow(): void
     {
         $this->assertSame("218922995834555169026", NumSeq::fib(99));
     }
     /** @test */
-    public function ok_soLargeIndex_returnNotOverFlow(): void
+    public function ok_1007thIndex_return211Digits(): void
     {
         $this->assertSame("1262027241743996257169366534803711153432873792011637768873717598849301425880152551659880282149947993889708136584785538962348100239436771893992147449837835103812540911951967569050060912009607003831549523998076513", NumSeq::fib(1007));
     }
